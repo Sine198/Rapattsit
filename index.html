@@ -42,10 +42,8 @@ liff.init({ liffId: "1657507962-Bx2DGPZL" }, () => {
     }
     function getEnvironment() {
         liff.getEnvironment().then(environment => {
-            let os = environment.os;
-            let language = environment.language;
-            let version = environment.version;
-            let url = "https://script.google.com/macros/s/AKfycbxLfNQ6YycG71K63edecHvZ0r1UxLb37RWI1LfV_2N0lbiZPeDcTXEoVqbvrxW6AAQ/exec?os="+os+"&language="+language+"&version="+version;
+            let getLanguage = environment.getLanguage;            
+            let url = "https://script.google.com/macros/s/AKfycbxLfNQ6YycG71K63edecHvZ0r1UxLb37RWI1LfV_2N0lbiZPeDcTXEoVqbvrxW6AAQ/exec?language="+language;
             document.getElementById("fromframe").src=url;
 
         }).catch(err => console.error(err));       
