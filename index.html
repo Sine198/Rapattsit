@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <iframe id="fromframe" frameborder="0"></iframe>
+    <iframe id="fromframe" src="" frameborder="0"></iframe>
 </body>
 <script src="https://static.line-scdn.net/liff/edge/versions/2.15.0/sdk.js"></script>
 <script>
@@ -38,24 +38,18 @@ liff.init({ liffId: "1657507962-Bx2DGPZL" }, () => {
             let pictureUrl = profile.pictureUrl;
             let url = "https://script.google.com/macros/s/AKfycbxLfNQ6YycG71K63edecHvZ0r1UxLb37RWI1LfV_2N0lbiZPeDcTXEoVqbvrxW6AAQ/exec?userId="+userId+"&displayName="+displayName+"&pictureUrl="+pictureUrl;
             document.getElementById("fromframe").src=url;            
-        }).catch(err => console.error(err));
-      
-      if ( // ถ้าเปิด LIFF จากไลน์
-            liff.getContext().type !== "none" &&
-            liff.getContext().type !== "external"
-          ){
-        let message = "Sine";
-        liff
-              .sendMessages(message)
-              .then(() => {
-                liff.closeWindow();
-              })
-              .catch((err) => {
-                console.error(err.code, error.message);
-              });
-      }
-      
-    }   
+        }).catch(err => console.error(err));       
+    }
+    function getEnvironment() {
+        liff.getEnvironment().then(environment => {
+            let os = environment.os;
+            let language = environment.language;
+            let version = environment.version;
+            let url = "https://script.google.com/macros/s/AKfycbxLfNQ6YycG71K63edecHvZ0r1UxLb37RWI1LfV_2N0lbiZPeDcTXEoVqbvrxW6AAQ/exec?os="+os+"&language="+language+"&version="+version;
+            document.getElementById("fromframe").src=url;
+
+        }).catch(err => console.error(err));       
+    }
 
 </script>
 </html>
