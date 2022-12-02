@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบแจ้งซ่อม Online</title>
+    <style>
+        html, body{
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+        iframe{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <iframe id="fromframe" frameborder="0"></iframe>
+</body>
+<script src="https://static.line-scdn.net/liff/edge/versions/2.15.0/sdk.js"></script>
+<script>
+
+liff.init({ liffId: "1657507962-Bx2DGPZL" }, () => {
+        if (liff.isLoggedIn()) {
+            runApp();
+        } else {
+            liff.login();
+        }
+    }, err => console.error(err.code, error.message));
+
+    function runApp() {
+        liff.getProfile().then(profile => {
+            let userId = profile.userId;
+            let displayName = profile.displayName;
+            let pictureUrl = profile.pictureUrl;
+            let url = "https://script.google.com/macros/s/AKfycbxLfNQ6YycG71K63edecHvZ0r1UxLb37RWI1LfV_2N0lbiZPeDcTXEoVqbvrxW6AAQ/exec?userId="+userId+"&displayName="+displayName+"&pictureUrl="+pictureUrl;
+            document.getElementById("fromframe").src=url;            
+        }).catch(err => console.error(err));
+      
+      if ( // ถ้าเปิด LIFF จากไลน์
+            liff.getContext().type !== "none" &&
+            liff.getContext().type !== "external"
+          ){
+        let message = "Sine";
+        liff
+              .sendMessages(message)
+              .then(() => {
+                liff.closeWindow();
+              })
+              .catch((err) => {
+                console.error(err.code, error.message);
+              });
+      }
+      
+    }   
+
+</script>
+</html>
