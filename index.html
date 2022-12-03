@@ -23,13 +23,13 @@
 <script src="https://static.line-scdn.net/liff/edge/versions/2.15.0/sdk.js"></script>
 <script>
 
-// liff.init({ liffId: "1657507962-Bx2DGPZL" }, () => {
-//         if (liff.isLoggedIn()) {
-//             runApp();
-//         } else {
-//             liff.login();
-//         }
-//     }, err => console.error(err.code, error.message));
+liff.init({ liffId: "1657507962-Bx2DGPZL" }, () => {
+        if (liff.isLoggedIn()) {
+            runApp();
+        } else {
+            liff.login();
+        }
+    }, err => console.error(err.code, error.message));
 
     function runApp() {
         liff.getProfile().then(profile => {
@@ -38,50 +38,8 @@
             let pictureUrl = profile.pictureUrl;
             let url = "https://script.google.com/macros/s/AKfycbxLfNQ6YycG71K63edecHvZ0r1UxLb37RWI1LfV_2N0lbiZPeDcTXEoVqbvrxW6AAQ/exec?userId="+userId+"&displayName="+displayName+"&pictureUrl="+pictureUrl;
             document.getElementById("fromframe").src=url;            
-        }).catch(err => console.error(err));
+        }).catch(err => console.error(err));       
     }
-
-    async function sendMsg() {
-      if (liff.getContext().type !== "none") {
-        await liff.sendMessages([
-          {
-            "type": "sticker",
-            "stickerId": 1,
-            "packageId": 1
-          }
-        ])
-        alert("Message sent")
-      }
-    }
-
-    function getContext() {
-      if (liff.getContext() != null) {
-        document.getElementById("type").append(liff.getContext().type)
-        document.getElementById("viewType").append(liff.getContext().viewType)
-        document.getElementById("utouId").append(liff.getContext().utouId)
-        document.getElementById("roomId").append(liff.getContext().roomId)
-        document.getElementById("groupId").append(liff.getContext().groupId)
-      }
-    }
-
-    async function main() {
-      liff.ready.then(() => {
-        document.getElementById("isLoggedIn").append(liff.isLoggedIn())
-        if (liff.isLoggedIn()) {
-            
-            // getEnvironment()
-            getUserProfile()
-            getContext()
-            runApp()
-            // getFriendship()
-            // createUniversalLink()
-        } else {
-          liff.login()
-        }
-      })
-      await liff.init({ liffId: "1657507962-Bx2DGPZL" })
-    }
-    main()
 
 
 </script>
